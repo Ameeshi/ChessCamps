@@ -1,0 +1,35 @@
+<% if @inactive_camps.empty? %>
+  <h4>There are no inactive camps at this time.</h4>
+<% else %>
+  <h3>Inactive Camps</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Start Date</th>
+      <th>Time Slot</th>
+      <th>Max Students</th>
+      <th>Remaining Slots</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inactive_camps.each do |camp| %>
+      <tr>
+        <td><%= link_to camp.curriculum.name, camp %></td>
+        <td><%= camp.start_date.strftime("%m/%d/%y") %></td>
+        <td><%= camp.time_slot == "am" ? "Morning" : "Afternoon" %></td>
+        <td><%= camp.max_students %></td>
+        <td><%#camp.max_students - camp.registrations.count %></td>
+        <td><%= link_to 'Edit', edit_camp_path(camp), :class=>"btn waves-effect waves-light blue" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>
+
+<span class="paginate">
+  <%= will_paginate @inactive_camps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next", :param_name => 'inactive_camps' %>
+</span>

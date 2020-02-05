@@ -1,0 +1,24 @@
+<div class="col s12 m6">
+  <div class="card indigo lighten-2">
+    <div class="card-content white-text">
+      <span class="card-title">Registered Students</span>
+      <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Points Earned</th>
+        </tr>
+      </thead>
+
+      <tbody>
+         @camp.registrations.each do |r| 
+          <tr>
+            <td>r.student.proper_name</td>
+            <td>r.points_earned</td>
+          </tr>
+        end
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+/********** FORMS ********/
+.switch label input[type=checkbox]:checked + .lever {
+  background-color: #2979ff;
+}
+
+.switch label input[type=checkbox]:checked + .lever::after {
+  background-color: #303F9F;
+}
+
+/********** CARDS ********/
+.card a {
+  color: #e0f7fa;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+  color: #e0f7fa;
+}
+
+.card .remove {
+  color: #b71c1c;
+}
+
+li.no_bullet {
+  list-style-type: none;
+}
+
+/********** BUTTONS ********/
+.btn-alert {
+  background-color: #c62828;
+  color: #fff;
+}
+.btn-alert:hover {
+  background-color: #e53935;
+  color: #fff;
+}

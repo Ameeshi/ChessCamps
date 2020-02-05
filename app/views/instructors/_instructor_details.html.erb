@@ -1,0 +1,9 @@
+<h3><%= @instructor.proper_name %></h3>
+
+<h5>Basic Information</h5>
+<p><strong>Bio: </strong><%= @instructor.bio %></p>
+<p><strong>Email: </strong><%= @instructor.email %></p>
+<p><strong>Phone: </strong><%= number_to_phone @instructor.phone %></p>
+<p><strong>Active:</strong>
+  <%= @instructor.active ? "Yes" : "No" %>
+</p>

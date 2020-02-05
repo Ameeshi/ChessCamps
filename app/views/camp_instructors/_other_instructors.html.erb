@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">Other Instructors</span>
+    <% if @other_instructors.empty? %>
+      <p>No other instructors assigned at this time</p>
+    <% else %>
+      <ul>
+        <% for instructor in @other_instructors %>
+          <li><%= link_to instructor.proper_name, instructor_path(instructor) %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>

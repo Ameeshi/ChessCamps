@@ -1,0 +1,22 @@
+<h3> Curriculum Details</h3>
+
+<p>
+  <strong>Name:</strong>
+  <%= @curriculum.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @curriculum.description %>
+</p>
+
+<p>
+  <strong>Ratings:</strong>
+  <%= @curriculum.min_rating == 0 ? "Unrated" : @curriculum.min_rating %> - <%= @curriculum.max_rating %>
+</p>
+
+
+<p>
+  <strong>Active:</strong>
+  <%= @curriculum.active ? "Yes" : "No" %>
+</p>

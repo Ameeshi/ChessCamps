@@ -1,0 +1,17 @@
+<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <%= link_to 'Home', home_path, :class => "grey-text text-lighten-3" %>&nbsp;&nbsp;::&nbsp;&nbsp;
+      <%= link_to 'About the Chess Camp', about_path, :class => "grey-text text-lighten-3" %>&nbsp;&nbsp;::&nbsp;&nbsp;
+      <%= link_to 'Contact Us', contact_path, :class => "grey-text text-lighten-3" %>&nbsp;&nbsp;::&nbsp;&nbsp;
+      <%= link_to 'Privacy Policy', privacy_path, :class => "grey-text text-lighten-3" %>
+      <br /><br />
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+    Webmaster: <%= mail_to("profh@cmu.edu", "Klingon Code Warrior", encode: "javascript") %> 
+    &nbsp;&nbsp;&copy 2018
+    </div>
+  </div>
+</footer>

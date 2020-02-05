@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col s8">
+    <h4>New Instructor for <%= @camp.name %>:</h4>
+    <%= simple_form_for(@camp_instructor) do |f| %>
+      <%= f.error_notification %>
+      <div class="row">
+        <div class="form-inputs">
+          <%= f.input :instructor_id, collection: Instructor.active.alphabetical.to_a, include_blank: true %>
+          <%= f.input :camp_id, as: :hidden, input_html: { value: @camp.id } %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-actions col s8">
+          <%= f.button :submit %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col s4">
+    <%= render :partial => "other_instructors" %>
+  </div>
+</div>

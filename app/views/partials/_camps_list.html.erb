@@ -1,0 +1,23 @@
+<div class="card indigo lighten-2">
+  <div class="card-content white-text">
+    <span class="card-title"><%= state %> Camps</span>
+    <% if camps.empty? %>
+    <p>No camps at this time</p>
+    <% else %>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Place</th>
+          <th>Starting</th>
+        </thead>
+          <% for camp in camps %>
+            <tr>
+              <td><%= link_to camp.name, camp_path(camp) %></td>
+              <td><%= link_to camp.location.name, location_path(camp.location) %></td>
+              <td>&nbsp;<%= camp.start_date.strftime("%m/%d/%y") %></td>
+            </tr>
+          <% end %>
+      </table>
+    <% end %>
+  </div>
+</div>

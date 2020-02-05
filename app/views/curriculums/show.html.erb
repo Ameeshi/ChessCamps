@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col s5">
+    <%= render :partial => "curriculum_details" %>
+  </div>
+  <div class="col s7">
+    <%= render :partial => "partials/camps_list", locals: {camps: @past_camps_using, state: "Past"} unless @past_camps_using.empty? %>
+    <%= render :partial => "partials/camps_list", locals: {camps: @upcoming_camps_using, state: "Upcoming"} %>
+  </div>
+</div>
+<div class="row">
+  <div class="col s12">
+    <%= render :partial => "partials/object_options", locals: {model_name: "curriculum", object: @curriculum} %>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div id="form-template">
+
+  <!-- create an empty camp instructor object to work with -->
+  <% @camp_instructor = CampInstructor.new %>
+  <!-- now the form template itself -->
+  <div class="row">
+    <div class="col">
+      <h5>New Instructor:</h5>
+      <%= simple_form_for(@camp_instructor) do |f| %>
+        <%= f.error_notification %>
+        <div class="row">
+          <div class="form-inputs">
+            <%= f.input :instructor_id, collection: Instructor.active.alphabetical.to_a, include_blank: true %>
+            <%= f.input :camp_id, as: :hidden, input_html: { value: @camp.id } %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-actions col s8">
+            <%= f.button :submit %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

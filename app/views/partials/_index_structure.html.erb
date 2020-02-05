@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col s10 center">
+    <!-- primary partial gets displayed here in main div -->
+    <%= render partial: "#{primary}" %>
+    <!-- sometimes we want another partial below -->
+    <% unless secondary.nil? %>
+      <p>&nbsp;</p>
+      <%= render partial: "#{secondary}" %>
+    <% end %>
+    
+  </div>
+
+  <br></br>
+  <div class="col s3 center">
+    <!-- Add a button for new instances of object -->
+    <%= link_to(eval("new_#{model_name}_path"), class: "btn waves-effect waves-light blue") do %>
+      <!-- <i class="fa fa-plus"></i> -->
+      &nbsp;Add a New <%= model_name.capitalize %>
+    <% end %>
+  </div>
+</div>
+

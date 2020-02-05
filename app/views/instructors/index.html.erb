@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<% if @instructors.empty? %>
+  <h3>There are no instructors in the system at this time</h3>
+<% else %>
+  <h3>Instructors</h3>
+
+  <table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Camps</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @instructors.each do |instructor| %>
+      <tr>
+        <td><%= link_to instructor.name, instructor %></td>
+        <td><%= number_to_phone instructor.phone %></td>
+        <td><%= instructor.camps.size %></td>
+        <td><%= link_to 'Edit', edit_instructor_path(instructor), :class=>"btn waves-effect waves-light blue" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span class="paginate">
+  <%= will_paginate @instructors, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next", :param_name => 'instructors' %>
+</span>
+
+    <% end %>
+
+<%= link_to 'New instructor', new_instructor_path %>
+

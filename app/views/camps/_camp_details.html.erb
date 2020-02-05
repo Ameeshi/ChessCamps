@@ -1,0 +1,22 @@
+<div class="card indigo lighten-2">
+  <div class="card-content white-text">
+  Camp Details
+    <span class="card-title"><%=@camp.curriculum.name%></span>
+
+    <p><%= @camp.curriculum.description %></p>
+
+    <h5>Basic Information</h5>
+    <p><strong>Location: </strong><%= @camp.location.name %></p>
+    <p><strong>Dates: </strong><%= @camp.start_date.strftime("%m/%d/%y") %> - <%= @camp.end_date.strftime("%m/%d/%y") %></p>
+    <p><strong>Time of Day: </strong><%= @camp.time_slot == "am" ? "Morning" : "Afternoon" %></p>
+    <p><strong>Chess Levels: </strong><%= @camp.curriculum.min_rating %> - <%= @camp.curriculum.max_rating %></p>
+    <p><strong>Max Enrollment: </strong><%= @camp.max_students %></p>
+    <p><strong>Active: </strong><%= @camp.active ? "camp is currently active" : "camp is currently inactive." %></p>
+    <p><strong>Camp: </strong>$<%= @camp.cost %>0</p>
+    <p><strong>Slots Remaining: </strong><%# @camp.max_students - @camp.registrations.count %></p>
+  </div>
+  <div class="card-action">
+    <%= link_to 'Edit', edit_camp_path(@camp), :class=>"btn waves-effect waves-light blue" %>
+    <%= link_to 'Back', camps_path, :class=>"btn waves-effect waves-light blue" %>
+  </div>
+</div>
