@@ -1,0 +1,41 @@
+
+<% unless session[:cart].empty? %>
+<h4>Your cart has <%= session[:cart].length %> <%= 'camp'.pluralize(session[:cart].length) %></h4>
+
+<table class = "bordered centered responsive-table">
+  <thead>
+    <th>Camp</th>
+    <th>Cost</th>
+    <th>Student</th>
+    <th>Dates </th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% for i in @cart_items %>
+      <tr>
+        <td><%= link_to i[0], camp_path(i[4]) %></td>
+        <td><%= i[3] %></td>
+        <td><%= link_to i[1], student_path(i[5]) %></td>
+        <td><%= i[2] %> - <%= i[6] %></td>
+        <td><%= button_to "Delete", delete_from_cart_path(i[4], i[5]) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<table class="col s3">
+  <tbody>
+    <tr>
+      <td><b>Grand Total: </b></td><td><%= cart_cost %></td>
+    </tr>
+  </tbody>
+</table>
+<br/><br/><br/>
+  <div id="checkout_button">
+    <a class="waves-effect waves-light btn"> <%= link_to "Proceed to Checkout", new_cart_path %> </a>
+  </div>
+
+<% else %>
+  <h5><em>Please place at least one item in your registrations cart before checking out.</em></h5>
+<% end %>

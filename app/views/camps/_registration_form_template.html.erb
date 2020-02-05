@@ -1,0 +1,44 @@
+<div id="form-template">
+
+  <!-- create an empty registration object to work with -->
+  <% @registration = Registration.new %>
+  <!-- now the form template itself -->
+  <div class="row">
+    <div class="col">
+      <h5>New Student:</h5>
+      <% if current_user.role?(:parent) %>
+      <%= simple_form_for @registration, :url => url_for(:action => :add_to_cart, :controller => 'carts'), :method => 'get' do |f|%>
+        <%= f.error_notification %>
+        <div class="row">
+          <div class="form-inputs">
+            <%= f.input :student_id, collection: Student.can_attend(@camp, current_user.family), include_blank: true %>
+            <%= f.input :camp_id, as: :hidden, input_html: { value: @camp.id } %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-actions col s8">
+            <%= f.button :submit %>
+          </div>
+        </div>
+      <% end %>
+      <% elsif current_user.role?(:admin) %>
+            <%= simple_form_for(@registration) do |f| %>
+        <%= f.error_notification %>
+        <div class="row">
+          <div class="form-inputs">
+            <%= f.input :student_id, collection: Student.can_attend_2(@camp), include_blank: true %>
+            <%= f.input :camp_id, as: :hidden, input_html: { value: @camp.id } %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-actions col s8">
+            <%= f.button :submit %>
+          </div>
+        </div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+ 

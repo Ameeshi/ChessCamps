@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<% if @families.empty? %>
+  <h3>There are no families in the system at this time</h3>
+<% else %>
+  <div class = "row">
+  <%= render :partial => "partials/title_with_search", locals: {title: "Families"} %>
+  
+  <% if can? :create, Family %>
+    <div class = "col s2">
+      </br>
+      <%= link_to new_family_path do %>
+        <div class="btn-floating btn-large waves-effect waves-light black">
+          <i class="material-icons">  add </i>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+
+  <table class="striped">
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Students</th>
+      <th></th>
+    </tr>
+
+    <% @families.each do |family| %>
+      <tr>
+        <td><%= link_to family.name, family %></td>
+        <td><%= number_to_phone family.phone %></td>
+        <td><%= family.students.size %></td>
+        <% if can? :edit, Family %><td class = "align_center"><%= link_to edit_family_path(family) do %>
+                  <i class="material-icons">edit</i>
+                <% end %></td><% end %>
+      </tr>
+    <% end %>
+
+</table>
+
+  <br />
+
+
+<span class="paginate">
+  <%= will_paginate @families, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next", :param_name => 'families' %>
+</span>
+
+    <% end %>
+
+

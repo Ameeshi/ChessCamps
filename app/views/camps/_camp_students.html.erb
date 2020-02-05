@@ -1,24 +1,22 @@
-<div class="col s12 m6">
-  <div class="card indigo lighten-2">
-    <div class="card-content white-text">
-      <span class="card-title">Registered Students</span>
-      <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Points Earned</th>
-        </tr>
-      </thead>
-
-      <tbody>
-         @camp.registrations.each do |r| 
-          <tr>
-            <td>r.student.proper_name</td>
-            <td>r.points_earned</td>
-          </tr>
-        end
-      </tbody>
-    </table>
-    </div>
+<div class="card black">
+  <div class="card-content white-text">
+    <span class="card-title">Registrations</span>
+    <% if @camp.registrations.empty? %>
+    <p>No registrations at this time</p>
+    <% else %>
+      <ul>
+        <% @camp.students.each do |s| %>
+          <li>
+            <% if current_user.role? :instructor %> 
+              <%= link_to s.name, student_path(s) %>
+            <% else %> 
+              <%= s.name %> 
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
   </div>
 </div>
+
+

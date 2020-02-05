@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   # use has_secure_password for password hashing
   has_secure_password
+  has_one :family
+  has_one :instructor 
 
   # validations
   validates :username, presence: true, uniqueness: { case_sensitive: false}
@@ -11,6 +13,12 @@ class User < ApplicationRecord
   validates_length_of :password, minimum: 4, message: "must be at least 4 characters long", allow_blank: true
   validates_format_of :phone, with: /\A\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}\z/, message: "should be 10 digits (area code needed) and delimited with dashes or dots"
   validates_format_of :email, with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil))\z/i, message: "is not a valid format"
+
+  scope :alphabetical, -> { order('username') }
+  scope :active, -> { where(active: true) }
+  scope :possible_instructors, -> {where(role: "instructor")}
+  scope :possible_parents, -> {where(role: "parent")}
+  scope :search, ->(term) { where('name LIKE ?', "#{term}%") }
 
   # callbacks
   before_save :reformat_phone
@@ -23,6 +31,33 @@ class User < ApplicationRecord
     role.downcase.to_sym == authorized_role
   end
     
+  # login by username
+  def self.authenticate(username, password)
+    find_by_username(username).try(:authenticate, password)
+  end
+
+  def name
+    return nil if role.nil? 
+    if role? :instructor
+      return self.instructor.name 
+    elsif role? :parent
+      return self.family.name 
+    else 
+      return self.username.capitalize
+    end 
+  end 
+
+  def proper_name
+    return nil if role.nil? 
+    if role? :instructor
+      return self.instructor.proper_name 
+    elsif role? :parent
+      return self.family.proper_name 
+    else 
+      return self.username.capitalize
+    end 
+  end
+
   private
   def reformat_phone
     self.phone = self.phone.to_s.gsub(/[^0-9]/,"")

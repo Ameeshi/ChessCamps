@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127020420) do
+ActiveRecord::Schema.define(version: 20180505025237) do
 
   create_table "camp_instructors", force: :cascade do |t|
     t.integer "camp_id"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20171127020420) do
     t.text "bio"
     t.integer "user_id"
     t.boolean "active", default: true
+    t.string "photo"
     t.index ["user_id"], name: "index_instructors_on_user_id"
   end
 

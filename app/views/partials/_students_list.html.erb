@@ -1,0 +1,30 @@
+<div class="card black">
+  <div class="card-content white-text">
+    <span class="card-title">Students</span>
+    <% if @students.empty? %>
+    <p> No students at this time</p>
+    <% else %>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Rating</th>
+          <th>Age</th>
+          <th>Upcoming Camps (Start Date) </th>
+        </thead>
+          <% for student in @students %>
+            <tr>
+              <td><%= link_to student.name, student_path(student) %></td>
+              <td><%= student.rating %></td>
+              <td><%= student.age %></td>
+              <td><ul>
+                <% for camp in student.camps.upcoming %> 
+                    <li> <%= link_to camp.name, camp_path(camp) %> (<%= camp.start_date.strftime("%m/%d/%y")%>) </li>
+                <% end %>
+              </ul></td>
+
+            </tr>
+          <% end %>
+      </table>
+    <% end %>
+  </div>
+</div>

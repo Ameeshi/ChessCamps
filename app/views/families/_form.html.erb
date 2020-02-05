@@ -1,0 +1,54 @@
+</br>
+<%if current_user.nil? or current_user.role?(:instructor)%>
+<%elsif current_user.role?(:admin) %>
+
+  <div class="row">
+    <%= simple_form_for(@family) do |f| %>
+    <%= f.error_notification %>
+      <div class="row">
+        <div class="form-inputs">
+          <%= f.input :family_name, label_html: { class: 'active' } %>
+          <%= f.input :parent_first_name, label_html: { class: 'active' } %>
+          <%= f.input :username, label_html: { class: 'active' } %>
+          <%= f.input :email, label_html: { class: 'active' } %>
+          <%= f.input :phone, label_html: { class: 'active' } %>
+          <%= f.input :password, label_html: { class: 'active' } %>
+          <%= f.input :password_confirmation, label_html: { class: 'active' } %>
+          <%= f.input :active %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-actions col s9">
+          <%= f.button :submit %>
+        </div>
+      </div>
+      <% end %>
+  </div>
+
+<%else current_user.role?(:parent) %>
+
+  <div class="row">
+    <%= simple_form_for(@family) do |f| %>
+    <%= f.error_notification %>
+
+      <div class="row">
+        <h5>User Information</h5>
+        <div class="form-inputs">
+          <%= f.input :email, label_html: { class: 'active' } %>
+          <%= f.input :phone, label_html: { class: 'active' } %>
+          <%= f.input :password, label_html: { class: 'active' } %>
+          <%= f.input :password_confirmation, label_html: { class: 'active' } %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-actions col s9">
+          <%= f.button :submit %>
+        </div>
+      </div>
+      <% end %>
+  </div>
+
+
+  <% end %>

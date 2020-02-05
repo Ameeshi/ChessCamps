@@ -1,0 +1,43 @@
+<% if @active_locations.empty? %>
+  <h4>There are no active locations at this time.</h4>
+<% else %>
+  <div class = "row">
+  <%= render :partial => "partials/title_with_search", locals: {title: "Locations"} %>
+  
+  <% if can? :create, Location %>
+    <div class = "col s2">
+      </br>
+      <%= link_to new_location_path do %>
+        <div class="btn-floating btn-large waves-effect waves-light black">
+          <i class="material-icons">  add </i>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+  <table class="striped">
+    <tr>
+      <th> Name </th>
+      <th> Address </th>
+      <th> Capacity </th>
+      <th> </th>
+    </tr>
+
+  <% @active_locations.each do |location| %>
+    <tr>
+      <td><%= link_to location.name, location_path(location) %></td>
+      <td><%= render :partial => "partials/address_info", locals: {location: location} %></td>
+      <td><%= location.max_capacity %></td>
+       <% if can? :edit, Location %> <td class = "align_center"><%= link_to edit_location_path(location) do %>
+            <i class="material-icons">edit</i>
+          <% end %></td><% end %>
+    </tr>
+  <% end %>
+  </table>
+
+<% end %>
+
+<span class="paginate">
+  <%= will_paginate @active_locations, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next", :param_name => 'active_locations' %>
+</span>

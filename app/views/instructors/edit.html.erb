@@ -1,6 +1,40 @@
-<h1>Editing Instructor</h1>
+<div class = "card form">
+  <div class = "card-content">
+<h5>Editing Instructor</h5>
 
-<%= render 'form', instructor: @instructor %>
+<div class="row">
+    <%= simple_form_for @instructor, html: {multipart: true} do |f| %>
+      <%= f.error_notification %>
+      <div class="row">
+        <div class="form-inputs">
+          <% if logged_in? and current_user.role?(:admin)%>
+			<%= f.input :first_name, label_html: { class: 'active' } %>
+			<%= f.input :last_name, label_html: { class: 'active' } %>
+		  <% end %>
+			<%= f.input :bio, label_html: { class: 'active' } %>
+			<%= f.input :photo,  label_html: { class: 'active' } %>
+		  <% if logged_in? and current_user.role?(:admin)%>
+			<%= f.input :active %>
+		  <% end %>
+	      <% if logged_in? and current_user.role?(:admin)%>     	
+	        <%= f.input :username, label_html: { class: 'active' } %>
+	      <% end %> 
+	        <%= f.input :email, label_html: { class: 'active' } %>
+	        <%= f.input :phone, label_html: { class: 'active' } %>
+	        <%= f.input :password, label_html: { class: 'active' } %>
+	        <%= f.input :password_confirmation, label_html: { class: 'active' } %>
+	      <% if logged_in? and current_user.role?(:admin)%>
+	        <%= f.input :active %>
+	      <% end %>
+      </div>
+    </div>
 
-<%= link_to 'Show', @instructor %> |
-<%= link_to 'Back', instructors_path %>
+    <div class="row">
+      <div class="form-actions col s9">
+        <%= f.button :submit %>
+      </div>
+    </div>
+    <% end %>
+</div>
+
+</div></div>

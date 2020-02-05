@@ -3,5 +3,42 @@
     <h2 id="headline">Welcome to A&amp;M Chess Camp<!-- Learn chess the right way. --></h2>
     <p>The A&amp;M Chess Camp (named after the founds, Alex and Mark Heimann) is one of the <b>premiere chess camps</b> for youth this side of the Mississippi. Our instructors have years of experience playing and love to share their <b>wisdom</b> and <b>enthusiasm</b> for the game with students of all levels.</p>
     <p>Prospective students and parents should feel free to browse through our catalogue of <%= link_to "upcoming camps", camps_path %>. Unfortunately, we have not yet finished our online registration portal. So, should a camp pique your interest, please contact us <%= link_to "here", contact_path %> and we will begin assiting you with your registration as soon as possible. Thank you!</p>
+
+  </div>
+
+</div>
+
+<div class="row">  
+  <div class="col s12">
+      		<div class="carousel">
+		      <a class="carousel-item" href="#one"><%= image_tag 'SeanHat.jpg' %></a>
+		      <a class="carousel-item" href="#two"><%= image_tag 'Ian&Robbie.jpg' %></a>
+		      <a class="carousel-item" href="#three"><%= image_tag 'Alex&Mark1.jpg' %></a>
+		      <a class="carousel-item" href="#four"><%= image_tag 'BoysPlaying2.jpg' %></a>
+		      <a class="carousel-item" href="#five"><%= image_tag 'Coaching1.jpg' %></a>
+		      <a class="carousel-item" href="#six"><%= image_tag 'Coaching5.jpg' %></a>
+		      <a class="carousel-item" href="#seven"><%= image_tag 'Luke&Erik2.jpg' %></a>
+		      <a class="carousel-item" href="#eight"><%= image_tag 'Nate&Sarah.jpg' %></a>
+		      <a class="carousel-item" href="#nine"><%= image_tag 'Sam&Mike.jpg' %></a>
+		      <a class="carousel-item" href="#ten"><%= image_tag 'Sammy&Josiah.jpg' %></a>
+		    </div> 	
+	        <p align="center">"Chess is not merely an idle amusement ... life is a kind of chess."	- Benjamin Franklin </p>
   </div>
 </div>
+
+<% if logged_in? %> 
+<% if current_user.role?(:admin) or current_user.role?(:parent) %>
+<div class="row">
+	<h2 align="center"> Distribution of Camps </h2>
+	  <div class="col s4">
+	   Across Time Slots
+	  <%= pie_chart Camp.group(:time_slot).count %></div>
+	  <div class="col s4">
+	  Across Locations
+	  <%= pie_chart Camp.group(:location_id).count %></div>
+	  <div class="col s4">
+	  Across Curriculums
+	  <%= pie_chart Camp.group(:curriculum_id).count %></div>
+
+</div>
+<% end %><%end %>

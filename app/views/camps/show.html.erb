@@ -3,8 +3,23 @@
     <%= render :partial => "camp_details" %>
   </div>
   <div class="col s5">
-    <%= render :partial => "camp_instructors_vue"%>
-    <%# render :partial => "camp_students"%>
+    
+    <% if logged_in? and current_user.role? :admin %> 
+      <%= render :partial => "camp_instructors_vue"%>
+    <% elsif logged_in? and current_user.role? :instructor %> 
+      <%= render :partial => "camp_instructors"%>
+    <% elsif logged_in? and current_user.role? :parent %> 
+      <%= render :partial => "camp_instructors"%>
+    <% end %> 
+
+    <% if logged_in? and current_user.role? :admin %>
+      <%= render :partial => "camp_students_vue"%>
+    <% elsif logged_in? and current_user.role? :instructor %> 
+      <%= render :partial => "camp_students"%>
+    <% elsif logged_in? and current_user.role? :parent %> 
+      <%= render :partial => "camp_students_vue"%>
+    <% end %>
+
   </div>
 </div>
 <div class="row">

@@ -1,0 +1,57 @@
+<div id="assignments2">
+  <%= hidden_field_tag "camp_id", @camp.id %>
+  <div class="card black">
+    <div class="card-content white-text">
+      <span class="card-title">Students</span>
+      <% if @camp.registrations.empty? %>
+      <p>No registrations at this time</p>
+      <% else %>
+        <ul is='student-row' 
+            v-for="student in students" 
+            v-bind:student="student"
+            class="no_bullet">  
+        </ul>
+      <% end %>
+      <div class="card-action">
+
+        <% if current_user.role?(:parent) %>
+
+          <% if Student.can_attend(@camp, current_user.family).empty? %>
+            Can not add student at this time
+          <% else %>
+
+            <div v-if="modal_open">
+              <%= link_to "Cancel", "#", {%s(v-on:click) => "switch_modal()"} %>
+            </div>
+            <div v-else>
+              <%= link_to "Add a student", "#", {%s(v-on:click) => "switch_modal()"} %>
+            </div>
+
+          <% end %>
+
+        <% elsif current_user.role?(:admin) %>
+
+          <div v-if="modal_open">
+            <%= link_to "Cancel", "#", {%s(v-on:click) => "switch_modal()"} %>
+          </div>
+          <div v-else>
+            <%= link_to "Add a student", "#", {%s(v-on:click) => "switch_modal()"} %>
+          </div>
+
+        <% end %> 
+
+      </div>
+    </div>
+  </div>
+
+  <div v-if="modal_open">
+    <new-student-form></new-student-form>
+  </div>
+
+
+</div>  <!-- End of div#assignments -->
+
+  <script type="text/x-template" id="registration-form-template">
+    <%= render "registration_form_template" %>
+  </script>
+

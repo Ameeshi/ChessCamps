@@ -1,13 +1,19 @@
 class CampsController < ApplicationController
-  before_action :set_camp, only: [:show, :edit, :update, :destroy, :instructors]
+  before_action :set_camp, only: [:show, :edit, :update, :destroy, :instructors, :students]
+  authorize_resource
 
   def index
-    @active_camps = Camp.all.active.alphabetical.paginate(:page => params[:active_camps]).per_page(10)
-    @inactive_camps = Camp.all.inactive.alphabetical.paginate(:page => params[:inactive_camps]).per_page(1)
+    if logged_in? and current_user.role?(:admin)
+      @active_camps = Camp.all.active.alphabetical.paginate(:page => params[:active_camps]).per_page(10)
+      @inactive_camps = Camp.all.inactive.alphabetical.paginate(:page => params[:inactive_camps]).per_page(10)
+    else
+      @active_camps = Camp.all.active.alphabetical.paginate(:page => params[:active_camps]).per_page(10)
+    end 
   end
 
   def show
     @instructors = @camp.instructors.alphabetical
+    @students = @camp.students.alphabetical
   end
 
   def edit
@@ -43,6 +49,11 @@ class CampsController < ApplicationController
   def instructors
     @instructors = Instructor.for_camp(@camp).alphabetical
   end
+
+  def students 
+    @students = Student.for_camp(@camp).alphabetical
+  end 
+
 
   private
     def set_camp

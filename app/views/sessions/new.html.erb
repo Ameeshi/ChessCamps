@@ -1,0 +1,22 @@
+
+  <h3>Log In</h3>
+  <p>Do not have an account? Sign up <%= link_to "here", signup_path %>.</p>
+
+    <%= form_with url: sessions_path, local: true do |f| %>
+
+    <div class="control-group">
+      <%= label_tag :username %>
+      <div class="controls">
+        <%= text_field_tag :username, params[:username] %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= label_tag :password %>
+      <div class="controls">
+        <%= password_field_tag :password %>
+      </div>
+    </div>
+
+    <div class="actions"><%= submit_tag "Log In" %></div>
+  <% end %>

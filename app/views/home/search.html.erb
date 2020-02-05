@@ -1,0 +1,62 @@
+<h5>Search result for term <em>'<%= @query %>'</em> resulted in <%= pluralize(@total_hits, 'hit') %></h5>
+<p class="supertiny">&nbsp;</p>
+
+<% unless @instructors.empty? %>
+  <p><em><strong>Instructors matching term '<%= @query %>'</strong></em></p>
+  <ul>
+    <% for instructor in @instructors do %>
+      <li><%= link_to instructor.proper_name, instructor_path(instructor) %></li>
+    <% end %>
+  </ul>
+  <p class="smtext">&nbsp;</p>
+<% end %>
+
+<% unless @students.empty? %>
+  <p><em><strong>Students matching term '<%= @query %>'</strong></em></p>
+  <ul>
+    <% for student in @students do %>
+      <li><%= link_to student.proper_name, student_path(student) %>: from family <%= "#{student.family.proper_name}" %></li>
+    <% end %>
+  </ul>
+  <p class="supertiny">&nbsp;</p>
+<% end %>
+
+<% unless @families.empty? %>
+  <p><em><strong>Families matching term '<%= @query %>'</strong></em></p>
+  <ul>
+    <% for family in @families.alphabetical do %>
+      <li><%= link_to family.proper_name, family_path(family) %></li>
+    <% end %>
+  </ul>
+  <p class="smtext">&nbsp;</p>
+<% end %>
+
+<% unless @camps.empty? %>
+  <p><em><strong>camps matching term '<%= @query %>'</strong></em></p>
+  <ul>
+    <% for camp in @camps.chronological do %>
+      <li><%= link_to camp_path(camp) do %> (<%= camp.start_date.strftime("%m/%d/%y") %> - <%= camp.end_date.strftime("%m/%d/%y") %> )&nbsp; <%= camp.name %>  <% end %></li>
+    <% end %>
+  </ul>
+  <p class="smtext">&nbsp;</p>
+<% end %>
+
+<% unless @curriculums.empty? %>
+  <p><em><strong>curriculums matching term '<%= @query %>'</strong></em></p>
+  <ul>
+    <% for curriculum in @curriculums do %>
+      <li><%= link_to curriculum.name, curriculum_path(curriculum) %></li>
+    <% end %>
+  </ul>
+  <p class="smtext">&nbsp;</p>
+<% end %>
+
+<% unless @locations.empty? %>
+  <p><em><strong>locations matching term '<%= @query %>'</strong></em></p>
+  <ul>
+    <% for location in @locations do %>
+      <li><%= link_to location.name, location_path(location) %></li>
+    <% end %>
+  </ul>
+  <p class="smtext">&nbsp;</p>
+<% end %>

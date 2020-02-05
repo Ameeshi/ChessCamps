@@ -14,18 +14,27 @@
 //= require rails-ujs
 //= require materialize-sprockets
 //= require materialize-form
+//= require vue
 //= require_tree .
+//= require highcharts
+//= require Chart.bundle
+//= require chartkick
 
-// $( document ).ready(function () {
-//     $('select').material_select();
-//     $('.datepicker').pickadate({
-//     format: 'mmmm dd, yyyy',
-//     formatSubmit: 'mmmm dd, yyyy',
-//     selectMonths: true, // Creates a dropdown to control month
-//     selectYears: 15, // Creates a dropdown of 15 years to control year,
-//     today: 'Today',
-//     clear: 'Clear',
-//     close: 'Ok',
-//     closeOnSelect: false // Close upon selecting a date,
-//   });
-// });
+// @import "materialize";
+// @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+// Search submit on enter
+$(document).ready(function() {
+  function submitForm() {
+    document.getElementById("search").submit();
+  }
+  document.onkeydown = function () {
+    if (window.event.keyCode == '13') {
+        submitForm();
+    }
+  }
+});
+
+$(document).ready(function(){
+  $('.carousel').carousel();
+});

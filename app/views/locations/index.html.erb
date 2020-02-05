@@ -1,12 +1,9 @@
-<% if @active_locations.empty? %>
-  <h3>There are no active locations in the system at this time</h3>
-<% else %>
-  <%= render :partial => "locations_list", locals: {locations: @active_locations, state: "Active"} %>
-<% end %>
-<br>
-<% unless @inactive_locations.empty? %>
-  <%= render :partial => "locations_list", locals: {locations: @inactive_locations, state: "Inactive"} %>
+<%= render partial: "locations/active_locations" %>
+<!-- sometimes we want another partial below -->
+<% unless @inactive_locations.nil? %>
+  <p>&nbsp;</p>
+  <%= render partial: "locations/inactive_locations" %>
 <% end %>
 
 
-<%= link_to 'New Location', new_location_path %>
+

@@ -1,17 +1,16 @@
-<footer class="page-footer">
-  <div class="container">
-    <div class="row">
-      <%= link_to 'Home', home_path, :class => "grey-text text-lighten-3" %>&nbsp;&nbsp;::&nbsp;&nbsp;
-      <%= link_to 'About the Chess Camp', about_path, :class => "grey-text text-lighten-3" %>&nbsp;&nbsp;::&nbsp;&nbsp;
-      <%= link_to 'Contact Us', contact_path, :class => "grey-text text-lighten-3" %>&nbsp;&nbsp;::&nbsp;&nbsp;
-      <%= link_to 'Privacy Policy', privacy_path, :class => "grey-text text-lighten-3" %>
-      <br /><br />
-    </div>
+<p class="supertiny">&nbsp;</p>
+
+<div id="footer" class="center-align">
+  
+  <%= link_to 'Home', home_path %>&nbsp;&nbsp;|
+  <%= link_to 'About', about_path %>&nbsp;&nbsp;|
+  <%= link_to 'Contact Us', contact_path %>&nbsp;&nbsp;|
+  <%= link_to 'Privacy Policy', privacy_path %>
+  <br/>
+  <br/>
+  <div id="copy">
+    &copy Webmaster: <%= mail_to("ameeshig@cmu.edu", "Ameeshi", encode: "javascript") %> 2018
   </div>
-  <div class="footer-copyright">
-    <div class="container">
-    Webmaster: <%= mail_to("profh@cmu.edu", "Klingon Code Warrior", encode: "javascript") %> 
-    &nbsp;&nbsp;&copy 2018
-    </div>
-  </div>
-</footer>
+  <br />
+
+</div>

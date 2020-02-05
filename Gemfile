@@ -38,6 +38,15 @@ gem 'bcrypt', '~> 3.1.7'
 # Get rid of github warning
 gem 'loofah', '2.2.1'
 
+# Other gems
+gem 'chronic', '0.10.2'
+gem 'time_date_helpers', '0.0.2'
+gem 'vuejs-rails', '2.5.13'
+gem 'best_in_place', '~> 3.0.1'
+gem 'carrierwave'
+gem 'chartkick'
+gem 'groupdate'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -73,14 +82,13 @@ gem 'simple_form', '3.5.0'
 # gem 'carrierwave'
 
 # authorization gem
-# gem 'cancancan'
+gem 'cancancan'
 
 # Materialize and UI gems
 gem 'materialize-sass', '0.100.2'
 gem 'materialize-form', '1.0.8'
 gem 'jquery-rails', '4.3.1'
 gem 'jquery-ui-rails', '6.0.1'
-gem 'vuejs-rails', '2.5.13'
 
 # Additional gems that are very useful in Rails development
 group :development do

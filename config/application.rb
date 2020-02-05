@@ -18,5 +18,6 @@ module ChessCamp2018
 
     # Set time_zone to Eastern Time
     config.time_zone = 'Eastern Time (US & Canada)'
+    Groupdate.time_zone = 'Eastern Time (US & Canada)'
   end
 end

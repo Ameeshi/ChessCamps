@@ -1,0 +1,32 @@
+<div class = "card form">
+  <div class = "card-content">
+<div class="row">
+  <% if current_user.nil? %>
+    <h5>New Account</h5>
+  <% else %>
+    <h5>New Family</h5>
+  <% end %>
+  <%= simple_form_for(@family) do |f| %>
+  <%= f.error_notification %>
+    <div class="row">
+      <div class="form-inputs">
+        <%= f.input :parent_first_name, label: 'First Name' %>
+        <%= f.input :family_name, label: 'Last Name' %>
+        <%= f.input :username, label_html: { class: 'active' } %>
+        <%= f.input :email, label_html: { class: 'active' } %>
+        <%= f.input :phone, label_html: { class: 'active' } %>
+        <%= f.input :password, label_html: { class: 'active' } %>
+        <%= f.input :password_confirmation, label_html: { class: 'active' } %>
+        <%= f.input :active %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-actions col s9">
+        <%= f.button :submit %>
+      </div>
+    </div>
+    <% end %>
+</div>
+</div></div>
+

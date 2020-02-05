@@ -1,6 +1,6 @@
 <div id="assignments">
   <%= hidden_field_tag "camp_id", @camp.id %>
-  <div class="card indigo lighten-2">
+  <div class="card black">
     <div class="card-content white-text">
       <span class="card-title">Camp Instructors</span>
       <% if @camp.instructors.empty? %>
@@ -12,10 +12,21 @@
             class="no_bullet">  
         </ul>
       <% end %>
-      <div class="card-action">
-      <%# link_to "Add a new instructor", "#" %>
-      <%= link_to "Add a new instructor", "#", {%s(v-on:click) => "switch_modal()"} %>
-      </div>
+
+      <% if can? :create, CampInstructor %>
+        <div class="card-action">
+          <% if Instructor.time(@camp.id, @camp.start_date, @camp.time_slot).empty? %>
+            Can not add instructor at this time
+          <% else %>
+          <div v-if="modal_open">
+            <%= link_to "Cancel", "#", {%s(v-on:click) => "switch_modal()"} %>
+          </div>
+          <div v-else>
+            <%= link_to "Add a new instructor", "#", {%s(v-on:click) => "switch_modal()"} %>
+          </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 
@@ -23,14 +34,9 @@
     <new-instructor-form></new-instructor-form>
   </div>
 
-
 </div>  <!-- End of div#assignments -->
 
 
-
-
-<!--  much easier to include this complicated template here 
-      rather than in the js file (IMO) -->
 <script type="text/x-template" id="camp-instructor-form-template">
   <%= render "camp_instructor_form_template" %>
 </script>

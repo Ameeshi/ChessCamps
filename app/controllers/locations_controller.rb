@@ -1,9 +1,14 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
+  authorize_resource
 
   def index
-    @active_locations = Location.all.active.alphabetical.paginate(:page => params[:page]).per_page(10)
-    @inactive_locations = Location.all.inactive.alphabetical.paginate(:page => params[:page]).per_page(10)
+    if logged_in? and current_user.role?(:admin)
+      @active_locations = Location.all.active.alphabetical.paginate(:page => params[:page]).per_page(10)
+      @inactive_locations = Location.all.inactive.alphabetical.paginate(:page => params[:page]).per_page(10)
+    else 
+      @active_locations = Location.all.active.alphabetical.paginate(:page => params[:page]).per_page(10)
+    end    
   end
 
   def show

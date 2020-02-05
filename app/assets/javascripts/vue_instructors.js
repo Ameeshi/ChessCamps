@@ -1,8 +1,11 @@
+$(document).on('ready', function() {
+
+
 ////////////////////////////////////////////////
 //// Setting up a general ajax method to handle
 //// transfer of data between client and server
 ////////////////////////////////////////////////
-function run_ajax(method, data, link, callback=function(res){instructors.get_instructors()}){
+function run_ajax1(method, data, link, callback=function(res){instructors.get_instructors()}){
   $.ajax({
     method: method,
     data: data,
@@ -28,7 +31,8 @@ Vue.component('instructor-row', {
       <a v-on:click="remove_record(instructor)" class="remove">x&nbsp;&nbsp;</a>
       {{ instructor.last_name }},&nbsp;{{ instructor.first_name }}
     </li>
-  `,
+  `
+  ,
 
   props: {
     instructor: Object
@@ -46,7 +50,7 @@ Vue.component('instructor-row', {
 
   methods: {
     remove_record: function(instructor){
-      run_ajax('DELETE', {instructor: instructor}, '/camps/'.concat(this.camp_id, '/instructors/',instructor['id'],'.json'));
+      run_ajax1('DELETE', {instructor: instructor}, '/camps/'.concat(this.camp_id, '/instructors/',instructor['id'],'.json'));
     }
   }
 });
@@ -77,7 +81,7 @@ var new_form = Vue.component('new-instructor-form', {
         camp_id: this.camp_id,
         instructor_id: this.instructor_id
       }
-      run_ajax('POST', {instructor: new_post}, '/camp_instructors.json')
+      run_ajax1('POST', {instructor: new_post}, '/camp_instructors.json')
       this.switch_modal()
     }
   },
@@ -109,11 +113,13 @@ var instructors = new Vue({
     },
 
     get_instructors: function(){
-      run_ajax('GET', {}, '/camps/'.concat(this.camp_id, '/instructors.json'), function(res){instructors.instructors = res});
+      run_ajax1('GET', {}, '/camps/'.concat(this.camp_id, '/instructors.json'), function(res){instructors.instructors = res});
     }
   },
 
   mounted: function(){
     this.get_instructors();
   }
+});
+
 });

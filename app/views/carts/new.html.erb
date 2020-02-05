@@ -1,0 +1,58 @@
+<div class="row">
+	<%= simple_form_for(@registration, :url => create_cart_path) do |f| %>
+
+		<!-- Display errors, if any -->
+		<% if @registration.errors.any? %>
+			<div id="error_explanation">
+				<h6><%= pluralize(@registration.errors.count, "error") %> prohibited this registration from being saved:</h6>
+				<% @registration.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</div>
+  	<% end %>
+		
+<!-- 		<div class="row">
+			<div class="input-field col s11">
+				<i class="material-icons prefix">school</i>
+				<%# f.label :school %><br></br>
+				<%# unless @recent_school.nil? %>
+					<%# f.collection_select :school_id, School.active.alphabetical.all, :id, :name, { :selected => @recent_school.id } %>
+				<%# else %>
+					<%# f.collection_select :school_id, School.active.alphabetical.all, :id, :name, { :prompt => "Select a school..." } %>
+				<%# end %>
+			</div>
+    </div> -->
+<!-- 		<div class="row">
+			<%# link_to "Don't see your school? Click here to add it.", new_school_path %>
+		</div> -->
+		<div class="row">
+			<div class="input-field col s11">
+				<i class="material-icons prefix">credit_card</i>
+				<%= f.label :credit_card_number %>
+    		<%= f.number_field :credit_card_number %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s11">
+				<i class="material-icons prefix">date_range</i>
+				<%= f.label :expiration_month, "Expiration month (MM)" %>
+    		<%= f.number_field :expiration_month %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s11">
+				<i class="material-icons prefix">date_range</i>
+				<%= f.label :expiration_year, "Expiration year (YYYY)" %>
+    		<%= f.number_field :expiration_year %>
+			</div>
+		</div>
+		<div class ="row">
+			<div class="input-field col s11">
+				<button class="btn waves-effect waves-light">
+					<i class="material-icons right">send</i>
+					<%= f.submit %>
+				</button>
+			</div>
+		</div>
+	<% end %>
+</div>

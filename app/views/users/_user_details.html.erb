@@ -1,0 +1,10 @@
+<h3><%= @user.proper_name %></h3>
+
+<h5>Basic Information</h5>
+<p><strong>Username: </strong><%= @user.username %></p>
+<p><strong>Role: </strong><%= @user.role.capitalize %></p>
+<p><strong>Email: </strong><%= @user.email %></p>
+<p><strong>Phone: </strong><%= number_to_phone @user.phone %></p>
+<p><strong>Active:</strong>
+  <%= @user.active ? "Yes" : "No" %>
+</p>

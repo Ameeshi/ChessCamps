@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col s5">
+    <%= render :partial => "student_details" %>
+  </div>
+  <div class="col s7">
+    <%= render :partial => "partials/camps_list", locals: {camps: @upcoming_camps, state: "Upcoming"} unless @upcoming_camps.empty? %>
+    <%= render :partial => "partials/camps_list", locals: {camps: @past_camps, state: "Past"} unless @past_camps.empty? %>
+  </div>
+</div>
+<div class="row">
+  <div class="col s12">
+    <%= render :partial => "partials/object_options", locals: {model_name: "student", object: @student} %>
+  </div>
+</div>
+

@@ -1,0 +1,11 @@
+<h3><%= @family.proper_name %></h3>
+
+<h5>Basic Information</h5>
+<p><strong>Username: </strong>
+	<% if current_user.role?(:admin) %> <%= link_to @family.user.username, @family.user %>
+    <% else %> <%= @family.user.username %> <%end%> </p>
+<p><strong>Email: </strong><%= @family.email %></p>
+<p><strong>Phone: </strong><%= number_to_phone @family.phone %></p>
+<p><strong>Active:</strong>
+  <%= @family.active ? "Yes" : "No" %>
+</p>

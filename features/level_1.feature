@@ -41,8 +41,8 @@ Feature: Manage camps
     And I should not see "_id"
     And I should not see "Created"
     And I should not see "created"
-    And I should not see "2018-07-16"
-    And I should not see "2018-07-23"
+    And I should not see "2020-07-16"
+    And I should not see "2020-07-23"
   
   Scenario: The camp name is a link to camp details
     When I go to the camps page
@@ -74,7 +74,7 @@ Feature: Manage camps
     And I should not see "Becca Kern"
     And I should not see "Endgame Principles"
     And I should not see "Jordan Stapinski"
-    And I should not see "2018-07-20"
+    And I should not see "2020-07-20"
     And I should not see "true"
     And I should not see "True"
   
@@ -99,8 +99,8 @@ Feature: Manage camps
     When I go to the new camp page
     And I fill in "camp_cost" with "175"
     And I fill in "camp_max_students" with "8"
-    And I fill in "camp_start_date" with "1 September, 2018"
-    And I fill in "camp_end_date" with "5 September, 2018"
+    And I fill in "camp_start_date" with "1 September, 2020"
+    And I fill in "camp_end_date" with "5 September, 2020"
     And I select "Morning" from "camp_time_slot"
     And I press "Create Camp"
     Then I should see "can't be blank"

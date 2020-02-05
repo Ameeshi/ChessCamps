@@ -1,6 +1,9 @@
-<%= render partial: "partials/index_structure", locals: {model_name: "camp", 
-                                                         primary: "active_camps", 
-                                                         secondary: "inactive_camps",
-                                                         sidebar: nil} %>
+<%= render partial: "camps/active_camps" %>
+<!-- sometimes we want another partial below -->
+<% unless @inactive_camps.nil? %>
+  <p>&nbsp;</p>
+  <%= render partial: "camps/inactive_camps" %>
+<% end %>
+
 
 

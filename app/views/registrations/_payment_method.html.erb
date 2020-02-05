@@ -1,0 +1,6 @@
+<p><u><b>Payment Method:</b></u><br>
+<% unless @registration.payment.nil? %>
+  <%= @payment_info %>
+<% else %>
+  N/A
+<% end %></p>

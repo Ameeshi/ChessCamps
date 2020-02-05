@@ -10,6 +10,8 @@ class Family < ApplicationRecord
 
   # scopes
   scope :alphabetical, -> { order('family_name') }
+  scope :search, ->(term) { where('parent_first_name LIKE ? OR family_name LIKE ?', "#{term}%", "#{term}%") }
+
 
   # validations
   validates_presence_of :family_name, :parent_first_name
@@ -25,6 +27,24 @@ class Family < ApplicationRecord
   end
 
   before_update :handle_family_being_made_inactive
+
+  # instance methods
+  def name
+    family_name + ", " + parent_first_name
+  end
+  
+  def proper_name
+    parent_first_name + " " + family_name
+  end
+
+  def self.families_all
+    families = Family.alphabetical.active
+    list = []
+    families.each do |u|
+      list = list + [[u.family_name,u.id]]
+    end
+    return list
+  end
 
   private
   def handle_family_being_made_inactive

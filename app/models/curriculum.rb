@@ -16,6 +16,7 @@ class Curriculum < ApplicationRecord
   # scopes
   scope :alphabetical, -> { order('name') }
   scope :for_rating, ->(rating) { where("min_rating <= ? and max_rating >= ?", rating, rating) }
+  scope :search, ->(term) { where('name LIKE ?', "#{term}%") }
 
   # callbacks
   before_destroy do 

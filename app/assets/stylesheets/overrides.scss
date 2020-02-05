@@ -4,16 +4,16 @@
 }
 
 .switch label input[type=checkbox]:checked + .lever::after {
-  background-color: #303F9F;
+  background-color: #000000;
 }
 
 /********** CARDS ********/
 .card a {
-  color: #e0f7fa;
+  color: white;
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
-  color: #e0f7fa;
+  color: white;
 }
 
 .card .remove {
@@ -32,4 +32,362 @@ li.no_bullet {
 .btn-alert:hover {
   background-color: #e53935;
   color: #fff;
+}
+
+/********** FLASH MSGS ********/
+#flash_notice, #flash_error, #flash_alert {
+  padding: 5px 8px;
+  margin: 10px;
+}
+
+#flash_notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+  color: #008000;
+}
+
+#flash_error, #flash_alert {
+  background-color: #FCC;
+  border: solid 1px #C66;
+  color: #800000;
+}
+
+/********* ADDED AFTER SCAFFOLD CODE *********/ 
+
+input[type=text].search {
+  border-bottom: none;
+  margin-left: 10px;
+}
+
+#topbar {
+  background-color: #000000;
+  margin-bottom: 0px;
+  padding-top: 20px;
+}
+
+#topbar a {
+  margin: auto;
+  color: white;
+}
+
+#cart img {
+  margin-bottom: -15px;
+  margin-left: -20px;
+  margin-right: -10px;
+  }
+
+html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+}
+
+a {
+  color: #00acc1;
+}
+
+a:hover {
+  color: #4dd0e1;
+}
+
+.wrapper {
+  min-height: 100%;
+  margin-bottom: -150px;
+}
+
+.details {
+  font-size: 1.5em;
+  background-color: #eefcff;
+  font-family: 'Raleway', sans-serif;
+}
+
+b {
+  font-weight: 800;
+}
+
+.img_left {
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 15px;
+}
+
+/********** Headings ********/
+
+h3 {
+  padding-top: 10px;
+  font-weight: 900;
+}
+
+h5 {
+  font-family: 'Luckiest Guy', sans-serif;
+}
+
+/********** TopBar and Nav ********/
+
+#topbar {
+  margin-bottom: 0px;
+}
+
+.head a {
+  color: black;
+  font-family: 'Luckiest Guy', sans-serif;
+  font-size: 2px;
+}
+
+.logo {
+  margin: 10px;
+  margin-right: 40px;
+}
+
+#nav ul a {
+  color: black;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+
+/********** Tables ********/
+
+table th {
+  background-color: black;
+  color: white;
+}
+
+
+table.highlight > tbody > tr:hover {
+  background-color: #e0f7fa;
+}
+
+tr:hover {
+  background-color: #e0f7fa;
+}
+
+table.striped > tbody > tr:nth-child(odd):hover {
+  background-color: #e0f7fa;
+}
+
+td.align_right {
+  text-align: right;
+}
+
+td.align_center {
+  text-align: center;
+}
+
+th.align_right {
+  text-align: right;
+}
+
+th.align_center {
+  text-align: center;
+}
+
+
+
+/********** Form Stuff ********/
+
+abbr[title] {
+  border-bottom: none;
+  text-decoration: none;
+}
+
+.input-field label {
+  color: black;
+}
+
+input {
+  color: #00bcd4;
+}
+
+.form-actions input {
+  color: white;
+}
+
+label {
+  color: black;
+}
+
+submit-btn {
+  color: black;
+}
+
+.form {
+  background-color: #eefcff;
+}
+
+.switch label input[type=checkbox]:checked + .lever {
+  background-color: #4dd0e1;
+}
+
+.switch label input[type=checkbox]:checked + .lever::after {
+  background-color: #4dd0e1;
+}
+
+.picker__date-display {
+  background-color: #4dd0e1;
+  color: #000;
+}
+
+.picker__year-display {
+  color: #000;
+}
+
+input[type=text].search {
+  border-bottom: none;
+  margin-left: 10px;
+}
+
+.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
+  border-radius: 50%;
+  transform: scale(0.9);
+  background-color: #4dd0e1;
+  color: #000;
+}
+
+.check_boxes.optional.filled-in {
+  background-color: #4dd0e1;
+}
+
+[type="checkbox"].filled-in:checked+label:after {
+  border: 2px solid #4dd0e1;
+  background-color: #4dd0e1;
+}
+
+[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:after {
+  border: 2px solid #4dd0e1;
+  background-color: #4dd0e1;
+}
+
+/********** Footer ********/
+
+#footer {
+  background-color: #b2ebf2;
+  text-decoration: bold;
+  height: 110px;
+}
+
+.push {
+  height: 80px;
+}
+
+/********** Card Details ********/
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+  color: #4dd0e1;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating):hover {
+  color: #ced33f;
+}
+
+.remove {
+  color: #b71c1c;
+}
+
+.remove:hover {
+  color:#f44336;
+}
+/********** FLASH MSGs ********/
+
+.alert-box {
+  border-style: solid;
+  border-width: 1px;
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: normal;
+  padding: 0.875rem 1.5rem 0.875rem 0.875rem;
+  position: relative;
+  transition: opacity 300ms ease-out;
+  background-color: #008CBA;
+  border-color: #0078a0;
+  color: #FFFFFF; } 
+  .alert-box .close {
+    right: 0.25rem;
+    background: inherit;
+    color: #333333;
+    font-size: 1.375rem;
+    line-height: .9;
+    margin-top: -0.6875rem;
+    opacity: 0.3;
+    padding: 0 6px 4px;
+    position: absolute;
+    top: 50%; }
+    .alert-box .close:hover, .alert-box .close:focus {
+      opacity: 0.5; }
+  .alert-box.radius {
+    border-radius: 3px; }
+  .alert-box.round {
+    border-radius: 1000px; }
+  .alert-box.success {
+    background-color: #e8f5e9;
+    border-color: #a5d6a7;
+    color: #1b5e20; }
+  .alert-box.alert {
+    background-color: #f04124;
+    border-color: #de2d0f;
+    color: #FFFFFF; }
+  .alert-box.secondary {
+    background-color: #e7e7e7;
+    border-color: #c7c7c7;
+    color: #4f4f4f; }
+  .alert-box.warning {
+    background-color: #fff3e0;
+    border-color: #ffcc80;
+    color: #ef6c00; }
+  .alert-box.info {
+    background-color: #a0d3e8;
+    border-color: #74bfdd;
+    color: #4f4f4f; }
+  .alert-box.alert-close {
+    opacity: 0; }
+
+
+#flash_notice, #flash_error, #flash_alert {
+  padding: 5px 8px;
+  margin: 10px;
+}
+
+#flash_notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+  color: #008000;
+}
+
+#flash_error, #flash_alert {
+  background-color: #FCC;
+  border: solid 1px #C66;
+  color: #800000;
+}
+
+.carousel {
+  height: 250px;
+  margin-bottom: 0px;
+}
+
+.carousel .carousel-item {
+  width: 306px;
+  border: solid 5px #80deea ;
+}
+
+.small {
+  margin-top: 10px;
+  font-size: 0.8em;
+}
+
+.btn {
+  background-color: #4dd0e1;
+}
+
+
+.btn-large {
+  margin-top: -20px;
+  margin-left: 20%;
 }

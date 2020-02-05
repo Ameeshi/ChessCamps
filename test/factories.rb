@@ -13,13 +13,14 @@ FactoryBot.define do
     last_name "Heimann"
     bio "Mark is currently among the top 150 players in the United States and has won 4 national scholastic chess championships."
     association :user
+    photo "placeholder.png"
     active true
   end
   
   factory :camp do 
     cost 150
-    start_date Date.new(2018,7,16)
-    end_date Date.new(2018,7,20)
+    start_date Date.new(2021,7,16)
+    end_date Date.new(2021,7,20)
     time_slot "am"
     max_students 8
     active true

@@ -20,6 +20,14 @@ class Student < ApplicationRecord
   scope :alphabetical, -> { order('last_name, first_name') }
   scope :below_rating, ->(ceiling) { where('rating < ?', ceiling) }
   scope :at_or_above_rating, ->(floor) { where('rating >= ?', floor) }
+  scope :search, ->(term) { where('first_name LIKE ? OR last_name LIKE ?', "#{term}%", "#{term}%") }
+
+
+  def self.for_camp(camp)
+    # the 'instructive way'... (which I told you if you asked me for help)
+    # the easy way... 
+    camp.students
+  end
 
   # callbacks
   before_save :set_unrated_to_zero
@@ -37,6 +45,58 @@ class Student < ApplicationRecord
   end
 
   after_rollback :convert_to_inactive_and_remove_registrations
+
+  def self.can_attend(camp, family)
+    students = Student.where(family_id: family.id).active.alphabetical
+    result = []
+    students.each do |s|
+      if (camp.curriculum.min_rating..camp.curriculum.max_rating).cover?(s.rating)
+        result << s
+      end
+    end
+    final = []
+    students_in_other_camps = []
+    camps = Camp.where(start_date: camp.start_date, time_slot: camp.time_slot)
+    camps.each do |c|
+      students_in_other_camps = students_in_other_camps + c.students
+    end
+    result.each do |i|
+      if !students_in_other_camps.include?(i)
+        final << i
+      end
+    end
+    if camp.is_full?
+      return []
+    else 
+      return final
+    end
+  end
+
+  def self.can_attend_2(camp)
+    students = Student.active.alphabetical
+    result = []
+    students.each do |s|
+      if (camp.curriculum.min_rating..camp.curriculum.max_rating).cover?(s.rating)
+        result << s
+      end
+    end
+    final = []
+    students_in_other_camps = []
+    camps = Camp.where(start_date: camp.start_date, time_slot: camp.time_slot)
+    camps.each do |c|
+      students_in_other_camps = students_in_other_camps + c.students
+    end
+    result.each do |i|
+      if !students_in_other_camps.include?(i)
+        final << i
+      end
+    end
+    if camp.is_full?
+      return []
+    else 
+      return final
+    end
+  end 
 
   # other methods
   def name

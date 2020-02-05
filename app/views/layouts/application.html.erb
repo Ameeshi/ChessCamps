@@ -4,16 +4,26 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>A&M Chess Camp :: <%= controller.controller_name.capitalize %></title>
+    <title>A&amp;M Chess Camp :: <%= controller.controller_name.capitalize %></title>
     <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "application" %>
     <%= stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons" %>
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-
-    <%= render :partial => "partials/nav" %>
+    <!-- Partials for the topbar and navigation -->
+    <%= render :partial => "partials/topbar" %>
+    <% if logged_in? && ( current_user.role?(:admin) ) %>
+      <%= render :partial => "partials/nav" %>
+    <% elsif logged_in? && current_user.role?(:parent) %>
+      <%= render :partial => "partials/nav_parent" %>
+    <% elsif logged_in? && current_user.role?(:instructor) %>
+      <%= render :partial => "partials/nav_instructor" %>
+    <% else %>
+      <%= render :partial => "partials/nav_guest" %>
+    <% end %>
     
     <div class="row">
       <div class="container" id="main_content">

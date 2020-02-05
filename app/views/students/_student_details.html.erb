@@ -1,0 +1,8 @@
+<h3><%= @student.proper_name %></h3>
+
+<p><strong>Date of Birth: </strong><%= @student.date_of_birth.strftime("%m/%d/%y") %></p>
+<p><strong>Rating: </strong><%= @student.rating %></p>
+<% if current_user.role?(:admin) or current_user.role?(:instructor) %> <p><strong>Family: </strong><%= link_to @student.family.proper_name, family_path(@student.family) %></p><%end %>
+<p><strong>Active:</strong>
+  <%= @student.active ? "Yes" : "No" %>
+</p>

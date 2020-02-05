@@ -2,10 +2,15 @@ class Instructor < ApplicationRecord
   include AppHelpers::Activeable::InstanceMethods
   extend AppHelpers::Activeable::ClassMethods
 
+  mount_uploader :photo, PhotoUploader
+
   # relationships
   belongs_to :user
   has_many :camp_instructors
   has_many :camps, through: :camp_instructors
+  has_many :students, through: :camps
+  has_many :families, through: :students
+  has_many :registrations, through: :students
 
   # validations
   validates_presence_of :first_name, :last_name
@@ -13,13 +18,30 @@ class Instructor < ApplicationRecord
   # scopes
   scope :alphabetical, -> { order('last_name, first_name') }
   scope :needs_bio, -> { where(bio: nil) }
+  scope :search, ->(term) { where('first_name LIKE ? OR last_name LIKE ?', "#{term}%", "#{term}%") }
+
+
+  def self.time(camp_id, start_date, time_slot)
+    camps = Camp.where(start_date: start_date, time_slot: time_slot)
+    instructors = []
+    camps.each do |c|
+      instructors = instructors + c.instructors
+    end
+    result = []
+    Instructor.alphabetical.each do |i|
+      if !instructors.include?(i) and (i.active == true)
+        result = result + [i]
+      end
+    end
+    return result
+  end
 
   # class methods
   def self.for_camp(camp)
     # the 'instructive way'... (which I told you if you asked me for help)
-    CampInstructor.where(camp_id: camp.id).map{ |ci| ci.instructor }
+    # CampInstructor.where(camp_id: camp.id).map{ |ci| ci.instructor }.to_a
     # the easy way... 
-    # camp.instructors
+    camp.instructors
   end
 
   # delegates

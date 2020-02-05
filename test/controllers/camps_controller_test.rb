@@ -34,14 +34,14 @@ class CampsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create a new camp" do
     assert_difference('Camp.count', 1) do
-      post camps_url, params: {camp: { curriculum_id: @camp1.curriculum_id, location_id: @camp1.location_id, cost: 150, start_date: Date.new(2018,8,16), end_date: Date.new(2018,8,20), time_slot: "am", max_students: 10, active: true }}
+      post camps_url, params: {camp: { curriculum_id: @camp1.curriculum_id, location_id: @camp1.location_id, cost: 150, start_date: Date.new(2020,8,16), end_date: Date.new(2020,8,20), time_slot: "am", max_students: 10, active: true }}
     end
     assert_redirected_to camp_path(assigns(:camp))
     assert_equal "Mastering Chess Tactics was added to the system.", flash[:notice]
   end
 
   test "should fail to create a new camp" do
-    post camps_url, params: {camp: { curriculum_id: false, location_id: @camp1.location_id, cost: @camp1.cost, start_date: Date.new(2018,9,16), end_date: Date.new(2018,9,16), time_slot: @camp1.time_slot, max_students: @camp1.max_students, active: @camp1.active }}
+    post camps_url, params: {camp: { curriculum_id: false, location_id: @camp1.location_id, cost: @camp1.cost, start_date: Date.new(2020,9,16), end_date: Date.new(2020,9,16), time_slot: @camp1.time_slot, max_students: @camp1.max_students, active: @camp1.active }}
     assert_template :new
   end
 
@@ -60,7 +60,7 @@ class CampsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update a camp" do
-    patch camp_url(@camp1), params: {id: @camp1.id, camp: { curriculum_id: @camp1.curriculum_id, location_id: @camp1.location_id, cost: @camp1.cost, start_date: Date.new(2018,10,16), end_date: Date.new(2018,10,16), time_slot: @camp1.time_slot, max_students: 5, active: @camp1.active }}
+    patch camp_url(@camp1), params: {id: @camp1.id, camp: { curriculum_id: @camp1.curriculum_id, location_id: @camp1.location_id, cost: @camp1.cost, start_date: Date.new(2020,10,16), end_date: Date.new(2020,10,16), time_slot: @camp1.time_slot, max_students: 5, active: @camp1.active }}
     assert_redirected_to camp_url(@camp1)
     assert_equal "Mastering Chess Tactics was revised in the system.", flash[:notice]   
   end

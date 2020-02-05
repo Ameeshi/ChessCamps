@@ -165,12 +165,12 @@ class CampTest < ActiveSupport::TestCase
     end
 
     should "shows that a camp with same date and time slot but different location can be created" do
-      @ok_camp = FactoryBot.build(:camp, curriculum: @tactics, location: @north, start_date: Date.new(2018,7,23), end_date: Date.new(2018,7,27), time_slot: 'am')
+      @ok_camp = FactoryBot.build(:camp, curriculum: @tactics, location: @north, start_date: Date.new(2020,7,23), end_date: Date.new(2020,7,27), time_slot: 'am')
       assert @ok_camp.valid?
     end
 
     should "shows that a duplicate camp (same date, time and location) cannot be created" do
-      @bad_camp = FactoryBot.build(:camp, curriculum: @tactics, location: @cmu, start_date: Date.new(2018,7,23), end_date: Date.new(2018,7,27), time_slot: 'am')
+      @bad_camp = FactoryBot.build(:camp, curriculum: @tactics, location: @cmu, start_date: Date.new(2020,7,23), end_date: Date.new(2020,7,27), time_slot: 'am')
       deny @bad_camp.valid?
     end
 
