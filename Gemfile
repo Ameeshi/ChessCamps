@@ -36,7 +36,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 # Get rid of github warning
-gem 'loofah', '2.2.1'
+gem 'loofah', '2.3.1'
 
 # Other gems
 gem 'chronic', '0.10.2'
