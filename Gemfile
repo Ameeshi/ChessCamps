@@ -76,7 +76,7 @@ gem 'will_paginate', '3.1.6'
 gem 'validates_timeliness', '4.0.2'
 
 # Use simple_form to clean up form views
-gem 'simple_form', '3.5.0'
+gem 'simple_form', '5.0.0'
 
 # Use carrierwave to upload instructor photos
 # gem 'carrierwave'
